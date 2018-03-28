@@ -24,7 +24,7 @@
 //   - Example Output: ahooyay
 
 
-//
+
 
 //helper function to implement pattern3
 const consonantIdenfier = (aString) => {
@@ -42,9 +42,8 @@ const consonantIdenfier = (aString) => {
   }
   let consonant = aString.slice(0,consonantIndex);
   return aString.substr(consonantIndex)+ consonant + 'ay';
-}
+};
 
-// alert(consonantIdenfier('chris'))
 
 // a function to convert string to pig latins
 // solution:
@@ -54,25 +53,25 @@ const pigLatin = (aString) => {
   let result = '';
 
   let pattern1 = "/^[aeiouAEIOU]/";
-  let pattern2 = '/^[aeiouAEIOU]+/';
-  let pattern3 = '/[^aeiouAEIOU]+/';
-    if (aString.length === 1){
-      if (pattern1.includes(aString)){
-        result = aString + 'ay';
-      };
+  let pattern2 = 'aeiouAEIOU';
+  let pattern3 = 'bcdfgjklmnpqrstvwxzBCDFGHJKNNOQRSTVWXZ' ;
 
+  if (aString.length === 1){
+    if (pattern1.includes(aString)){
+      result = aString + 'ay';
+    }
     // implement spec 2
-  }else if(pattern2.includes(pattern2)){
+  }else if(pattern2.includes(aString[0])){
     result = aString + 'way';
-  }else if(pattern3.includes(aString)){
+    // implement spec 3
+  }else{
     result = consonantIdenfier(aString);
-  }else if()
-
+  }
 
   return result;
-}
+};
 
-// alert(pigLatin('orange'));
+alert(pigLatin('orange'));
 
 
 
