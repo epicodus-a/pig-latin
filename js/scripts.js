@@ -25,56 +25,63 @@
 
 
 
+///////////////////////////////////////////////////////////////////////////////
+// refactor with regex
 
-//helper function to implement pattern3
-const consonantIdenfier = (aString) => {
-  let vowels = 'aeiouAEIOU';
-  let str = aString.split("");
-  let newStr = [];
-  let consonantIndex;
-  for(let index = 0; index < str.length; index ++){
-    if(vowels.indexOf(str[index]) === -1){
-      newStr.push(str[index]);
-      consonantIndex = index + 1;
-    }else{
-      break;
-    }
-  }
-  let consonant = aString.slice(0,consonantIndex);
-  return aString.substr(consonantIndex)+ consonant + 'ay';
-};
+// a function to trim all consonant at the beginning of a words
+// var getConsonant = function(aString){
+//   var c = '/\b[bcdfghjklmnpqrstvwxyz]+/';
+//   for(var i = 0 ; i < aString.length; i++){
+//     if
+//   }
+// }
 
-// a function to convert string to pig latins
-// solution:
-//   - list pattern as above
-//   - replace with above patterns in target string
-const pigLatin = (aString) => {
-  let result = '';
+var pigLatinReg =function(aString){
+  var startWithV = /^[aeiou]+/i;
+  var startWithC = /\b[bcdfghjklmnpqrstvwxyz]+/i;
 
-  let pattern1 = "aeiouAEIOU";
-  // let pattern2 = 'aeiouAEIOU';
+  var result = '';
 
-  if (aString.length === 1){
-    if (pattern1.includes(aString)){
+  if (aString.match(startWithV)){
+    if(aString.length === 1){
       result = aString + 'ay';
+    }else{
+      result = aString + 'way';
     }
-    // implement spec 2
-  }else if(pattern1.includes(aString[0])){
-    result = aString + 'way';
-    // implement spec 3
-  }else{
-    result = consonantIdenfier(aString);
+  }else if(aString.match(startWithC)){
+    var con = aString.match(startWithC);
+    var startIndex = con.length+1;
+    result = aString.substr(startIndex) + con + 'ay';
   }
   return result;
 };
 
-alert(pigLatin('characters'));
+var pigLatinSentence = function(sentence){
+  // var result = '';
+  var resultArray = [];
+  var pigLatinSentence = sentence.split(" ");
+  for (var i = 0; i < pigLatinSentence.length; i++){
+    resultArray.push(pigLatinReg(pigLatinSentence[i]));
+  }
+  return resultArray.join(" ");
+}
 
-// //user interface logic
-// $().ready(function(){
-//   $(".pig-input").submit(e){
-//     e.preventDefault();
-//
-//     // var pigInput = $("#pig-latin").val();
-//   }
-// });
+// alert(pigLatinSentence("i ama driana"));
+
+// user interface logic
+$().ready(function(){
+  $(".pig-input").submit(function(e){
+    e.preventDefault();
+
+  const userInput = $("#pig-latin").val();
+  let result = '';
+  if (userInput){
+    result = pigLatinSentence(userInput);
+  }else{
+    result = "Please enter something";
+  }
+
+  $(".output").append(result);
+
+  });
+});
