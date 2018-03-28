@@ -44,7 +44,6 @@ const consonantIdenfier = (aString) => {
   return aString.substr(consonantIndex)+ consonant + 'ay';
 };
 
-
 // a function to convert string to pig latins
 // solution:
 //   - list pattern as above
@@ -52,30 +51,26 @@ const consonantIdenfier = (aString) => {
 const pigLatin = (aString) => {
   let result = '';
 
-  let pattern1 = "/^[aeiouAEIOU]/";
-  let pattern2 = 'aeiouAEIOU';
-  let pattern3 = 'bcdfgjklmnpqrstvwxzBCDFGHJKNNOQRSTVWXZ' ;
+  let pattern1 = "aeiouAEIOU";
+  // let pattern2 = 'aeiouAEIOU';
 
   if (aString.length === 1){
     if (pattern1.includes(aString)){
       result = aString + 'ay';
     }
     // implement spec 2
-  }else if(pattern2.includes(aString[0])){
+  }else if(pattern1.includes(aString[0])){
     result = aString + 'way';
     // implement spec 3
   }else{
     result = consonantIdenfier(aString);
   }
-
   return result;
 };
 
-alert(pigLatin('orange'));
+alert(pigLatin('characters'));
 
-
-
-//
+// //user interface logic
 // $().ready(function(){
 //   $(".pig-input").submit(e){
 //     e.preventDefault();
