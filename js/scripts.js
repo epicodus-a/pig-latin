@@ -34,16 +34,25 @@
 //   - replace with above patterns in target string
 const pigLatin = (aString) => {
   let result = '';
+
   let pattern1 = "/^[aeiouAEIOU]/";
-  if (aString.length === 1){
-    if (pattern1.includes(aString)){
-      result = aString + 'ay';
-    };
+  let pattern2 = '/^[aeiouAEIOU]+/'
+    if (aString.length === 1){
+      if (pattern1.includes(aString)){
+        result = aString + 'ay';
+      };
+
+    // implement spec 2
+  }else if(pattern2.includes(pattern2)){
+    result = aString + 'way';
   }
+
+
+
   return result;
 }
 
-alert(pigLatin('i'));
+alert(pigLatin('orange'));
 
 
 
