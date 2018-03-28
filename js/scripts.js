@@ -25,17 +25,7 @@
 
 
 
-///////////////////////////////////////////////////////////////////////////////
-// refactor with regex
-
-// a function to trim all consonant at the beginning of a words
-// var getConsonant = function(aString){
-//   var c = '/\b[bcdfghjklmnpqrstvwxyz]+/';
-//   for(var i = 0 ; i < aString.length; i++){
-//     if
-//   }
-// }
-
+// business logic
 var pigLatinReg =function(aString){
   var startWithV = /^[aeiou]+/i;
   var startWithC = /\b[bcdfghjklmnpqrstvwxyz]+/i;
@@ -57,7 +47,6 @@ var pigLatinReg =function(aString){
 };
 
 var pigLatinSentence = function(sentence){
-  // var result = '';
   var resultArray = [];
   var pigLatinSentence = sentence.split(" ");
   for (var i = 0; i < pigLatinSentence.length; i++){
@@ -66,7 +55,7 @@ var pigLatinSentence = function(sentence){
   return resultArray.join(" ");
 }
 
-// alert(pigLatinSentence("i ama driana"));
+///////////////////////////////////////////////////////////////////////////////
 
 // user interface logic
 $().ready(function(){
