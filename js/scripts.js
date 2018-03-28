@@ -42,6 +42,8 @@ var pigLatinReg =function(aString){
     var con = aString.match(startWithC);
     var startIndex = con.length+1;
     result = aString.substr(startIndex) + con + 'ay';
+  }else {
+    result = aString;
   }
   return result;
 };
