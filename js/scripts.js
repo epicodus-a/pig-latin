@@ -26,7 +26,25 @@
 
 //
 
+//helper function to implement pattern3
+const consonantIdenfier = (aString) => {
+  let vowels = 'aeiouAEIOU';
+  let str = aString.split("");
+  let newStr = [];
+  let consonantIndex;
+  for(let index = 0; index < str.length; index ++){
+    if(vowels.indexOf(str[index]) === -1){
+      newStr.push(str[index]);
+      consonantIndex = index + 1;
+    }else{
+      break;
+    }
+  }
+  let consonant = aString.slice(0,consonantIndex);
+  return aString.substr(consonantIndex)+ consonant + 'ay';
+}
 
+// alert(consonantIdenfier('chris'))
 
 // a function to convert string to pig latins
 // solution:
@@ -36,7 +54,8 @@ const pigLatin = (aString) => {
   let result = '';
 
   let pattern1 = "/^[aeiouAEIOU]/";
-  let pattern2 = '/^[aeiouAEIOU]+/'
+  let pattern2 = '/^[aeiouAEIOU]+/';
+  let pattern3 = '/[^aeiouAEIOU]+/';
     if (aString.length === 1){
       if (pattern1.includes(aString)){
         result = aString + 'ay';
@@ -45,14 +64,15 @@ const pigLatin = (aString) => {
     // implement spec 2
   }else if(pattern2.includes(pattern2)){
     result = aString + 'way';
-  }
-
+  }else if(pattern3.includes(aString)){
+    result = consonantIdenfier(aString);
+  }else if()
 
 
   return result;
 }
 
-alert(pigLatin('orange'));
+// alert(pigLatin('orange'));
 
 
 
